@@ -1,0 +1,7 @@
+{
+  "firefox.exe" : [ {
+    "command" : "ctrl o",
+    "description" : "opens a file",
+    "id" : "open"
+  } ]
+}
