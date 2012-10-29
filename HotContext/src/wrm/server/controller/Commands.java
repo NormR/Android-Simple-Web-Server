@@ -1,14 +1,8 @@
-package wrm.controller;
+package wrm.server.controller;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
-import org.pmw.tinylog.Logger;
-
-import wrm.CommandRegistry;
-import wrm.util.Interop;
-import wrm.util.Interop.WindowInformation;
+import wrm.HCController;
 
 public class Commands {
 
@@ -22,7 +16,7 @@ public class Commands {
 	public Object get(Map<String, String> params) {
 		
 		String appId = params.get("app");
-		return CommandRegistry.getInstance().getCommands(appId);
+		return HCController.getInstance().getRegistry().getCommands(appId);
 	}
 
 	public Object post(Object cmd) {

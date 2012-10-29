@@ -1,7 +1,13 @@
-{
-  "firefox.exe" : [ {
+[{"name" : "firefox.exe",
+  "commands" : [ {
     "command" : "ctrl o",
     "description" : "opens a file",
     "id" : "open"
-  } ]
-}
+  }]},
+ {"name" : "eclipse.exe",
+  "commands" : [ {
+    "command" : "ctrl d",
+    "description" : "delete a line",
+    "id" : "delline"
+  }]}
+]

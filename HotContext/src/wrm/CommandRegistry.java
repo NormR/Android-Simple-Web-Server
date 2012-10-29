@@ -19,56 +19,33 @@ import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import wrm.model.CommandDescription;
+import wrm.model.ContextDescription;
+import wrm.server.View;
 import wrm.util.RobotDsl;
 
 public class CommandRegistry {
 
 	
-	private static CommandRegistry _instance = new CommandRegistry();
-	public static CommandRegistry getInstance(){
-		return _instance ;
+	
+	
+	
+	private List<ContextDescription> commandMap = new LinkedList<>();
+	
+	
+	public List<ContextDescription> getContexts() {
+		return commandMap;
 	}
-	
-	
 
-	
-	public static class CommandDescription{
-		@JsonView(View.Private.class)
-		public String command;
-		
-		@JsonView(View.Public.class)
-		public String description;
-		@JsonView(View.Public.class)
-		public String id;
-		
-		public CommandDescription(String command, String description, String id) {
-			super();
-			this.command = command;
-			this.description = description;
-			this.id = id;
-		}
-		public CommandDescription() {
-		}
-		
-		public void execute(){
-			RobotDsl.evalCommandLine(command);
-		}
-	}
-	
-	private Map<String, List<CommandDescription>> commandMap = new HashMap<>();
-	
-	
+
 	public CommandRegistry() {
 		
-		List<CommandDescription> descs = new LinkedList<>();
 
 		
 //		PrettyPrinter pp = new DefaultPrettyPrinter();
 		ObjectMapper mapper = new ObjectMapper();
-		 TypeReference<HashMap<String,List<CommandDescription>>> typeRef 
-         = new TypeReference< 
-                HashMap<String,List<CommandDescription>> 
-              >() {}; 
+		 TypeReference<List<ContextDescription>> typeRef 
+         = new TypeReference<List<ContextDescription>>() {}; 
               
 		try {
 			commandMap = mapper.readValue(new File("commands.json"), typeRef);
@@ -80,21 +57,28 @@ public class CommandRegistry {
 	
 	
 	public List<CommandDescription> getCommands(String appId){
-		return commandMap.get(appId);
+		for(ContextDescription c : commandMap)
+			if (c.getName().equals(appId))
+				return c.getCommands();
+		
+		return null;
 	}
 	
 	
 	public void executeCommand(String appId, String commandId) {
-		if (commandMap.get(appId) == null)
+		List<CommandDescription> commands = getCommands(appId);
+		if (commands == null)
 		{
 			Logger.warn("Command not found: Id [{0}]  Application [{1}]", commandId, appId);
 			return;
 		}
 		
-		Logger.info("Executing command: Id [{0}]  Application [{1}]", commandId, appId);
-		for(CommandDescription desc : commandMap.get(appId))
-			if (desc.id.equals(commandId))
+		
+		for(CommandDescription desc : commands)
+			if (desc.id.equals(commandId)){
+				Logger.info("Executing command: Id [{0}]  Application [{1}]", commandId, appId);
 				desc.execute();
+			}
 	}
 	
 }

@@ -1,10 +1,9 @@
-package wrm.controller;
+package wrm.server.controller;
 
 import java.util.List;
 import java.util.Map;
 
-
-import wrm.CommandRegistry;
+import wrm.HCController;
 import wrm.util.Interop;
 import wrm.util.Interop.WindowInformation;
 
@@ -33,7 +32,7 @@ public class Apps {
 			Interop.showWindow(cmd.window);
 			break;
 		default:
-				CommandRegistry.getInstance().executeCommand(cmd.window.getExecutable(), cmd.commandId);
+				HCController.getInstance().getRegistry().executeCommand(cmd.window.getExecutable(), cmd.commandId);
 		}
 		
 		return null;

@@ -1,4 +1,4 @@
-package wrm;
+package wrm.server;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -8,8 +8,9 @@ import java.util.Map;
 
 import org.pmw.tinylog.Logger;
 
-import wrm.controller.Apps;
-import wrm.controller.Commands;
+import wrm.server.View.Public;
+import wrm.server.controller.Apps;
+import wrm.server.controller.Commands;
 
 import IceBreakRestServer.IceBreakRestServer;
 
@@ -22,7 +23,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 public class ApplicationServer {
-
+	
+	
+	
+	
+	private boolean keepRunning;
+	public void stopRunning(){
+		keepRunning = false;
+	}
 	
 	
 	
@@ -30,14 +38,13 @@ public class ApplicationServer {
 	 * @param args
 	 * @throws IOException 
 	 */
-	public static void main(String[] args) throws IOException {
-		Logger.setLoggingFormat("{level} {date:HH:mm:ss} [{thread}] {class}.{method}():\t{message}");
-		Logger.info("Starting Embedded Server");
-		
+	public void start(int port) throws IOException {
+	
+		keepRunning = true;
 		
 		IceBreakRestServer rest = new IceBreakRestServer();
 		//rest.debug = true;
-		rest.setPort(8080);
+		rest.setPort(port);
 		
 		Map<String, Object> requestMapping = new HashMap<String, Object>();
 		
@@ -50,7 +57,7 @@ public class ApplicationServer {
 		
 		ObjectMapper jsonMapper = new ObjectMapper();
 		
-		while(true){
+		while(keepRunning){
 			
 			rest.getHttpRequest();
 			
