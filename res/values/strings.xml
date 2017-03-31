@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SimpleWebServer</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    
+    <string name="pref_title_set_debug_text">Debug</string>
+    <string name="pref_summary_set_debug_text">Control debug output.</string>
+    <string name="set_debug_text_key">set_debug_text</string>
+    
+	<string name="add_prefix_key">add_prefix_text</string>	
+	<string name="use_service_key">use_service</string>
+</resources>

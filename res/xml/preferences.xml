@@ -1,0 +1,21 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+  
+     <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="@string/set_debug_text_key"
+        android:title="@string/pref_title_set_debug_text"
+        android:summary="@string/pref_summary_set_debug_text" />
+
+      <CheckBoxPreference 
+     	android:defaultValue="true"
+     	android:key="@string/add_prefix_key"
+     	android:title="Add prefix"
+     	android:summary="Add prefix  to uploaded file"   />
+      
+      <CheckBoxPreference 
+     	android:defaultValue="true"
+     	android:key="@string/use_service_key"
+     	android:title="Use Service"
+     	android:summary="Run Web Server in Service"   />
+      
+ </PreferenceScreen>

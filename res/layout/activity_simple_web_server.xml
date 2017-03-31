@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- For SimpleWebServer 
+   3/30/17 Added ScrollView
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+         <!-- Row of buttons to control the start/stop -->
+     <LinearLayout
+         android:id="@+id/linearLayout0"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_alignParentBottom="true"
+         android:gravity="center"
+         android:orientation="horizontal"
+         >
+   
+        <Button
+            android:id="@+id/stopBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:layout_weight="0"
+            android:background="#990000"
+            android:onClick="stopBtnClicked"
+            android:text="Stop Server"
+            android:enabled="false"
+            android:textAlignment="center" />
+        
+        <!--    spacer   -->
+        <View android:layout_width="40dp"
+            android:layout_height="40dp" 
+            android:background="#ffffff" />
+         
+        <Button
+            android:id="@+id/startBtn" 
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:layout_weight="0"
+            android:enabled="true"
+            android:background="#009900"
+            android:onClick="startBtnClicked"
+            android:text="Start Server"
+            android:textAlignment="center" 
+            />
+       
+     </LinearLayout>
+    
+    
+     <LinearLayout
+         android:id="@+id/linearLayout1"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:gravity="left"
+         android:orientation="horizontal" >
+
+        <TextView
+	        android:id="@+id/message_area"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="  IP address:  " 
+	        android:textSize="30dp"
+	        />
+   
+		<TextView  
+		    android:id="@+id/ipaddr"
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content" 
+		    android:paddingBottom="40dp"
+		    android:text=" the ip address goes here"
+		    android:textSize="30dp"
+		    />
+	  </LinearLayout>
+	  
+      <ScrollView
+	    android:id="@+id/SCROLLER_ID"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:scrollbars="vertical"
+	    android:fillViewport="true">
+     
+
+		<TextView  
+		    android:id="@+id/hello"
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content" 
+		    android:background="#37AEE4"
+		    android:backgroundTint="#FEFBDE"
+		    android:text=""
+		    android:layout_weight="1.0"
+		    />
+	   </ScrollView>
+	
+</LinearLayout>
